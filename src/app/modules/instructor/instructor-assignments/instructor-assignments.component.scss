@@ -1,0 +1,31 @@
+.gold {
+  color: #ffc600;
+}
+
+.blue {
+  color: #0071b2;
+}
+
+.red {
+  color: #e80d0d;
+}
+
+.purple {
+  color: #6a00b2;
+}
+
+.fa-eye-slash {
+  color: #e80d0d;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.fa-eye {
+  color: #10a503;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

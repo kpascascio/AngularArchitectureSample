@@ -1,0 +1,35 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a [ngClass]="{active: step==='getting started', 'nav-link':'nav-link'}" (click)="step='getting started'">Installation</a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="{active: step==='python', 'nav-link':'nav-link'}" (click)="step='python'">Python Prework</a>
+        </li>
+
+        <li class="nav-item">
+          <a [ngClass]="{active: step==='js', 'nav-link':'nav-link'}" (click)="step='js'">JavaScript Prework</a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="{active: step==='net', 'nav-link':'nav-link'}" (click)="step='net'">.Net Prework</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="step==='getting started'">
+  <app-shared-tab [arrayOfData]="generalAssignmentArray" [step]="step"></app-shared-tab>
+</div>
+<div *ngIf="step==='python'">
+  <app-shared-tab [arrayOfData]="pythonArray" [step]="step"></app-shared-tab>
+</div>
+<div *ngIf="step==='js'">
+  <app-shared-tab [arrayOfData]="jsArray" [step]="step"></app-shared-tab>
+</div>
+<div *ngIf="step==='net'">
+  <app-shared-tab [arrayOfData]="dotnetArray" [step]="step"></app-shared-tab>
+</div>

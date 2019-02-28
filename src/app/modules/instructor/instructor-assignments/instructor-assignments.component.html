@@ -1,0 +1,116 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <button 
+            class="btn btn-primary" 
+            type="button" 
+            (click)="openModal(assignmentCreate)"
+          >Create New Assignment!</button>
+        </div>
+
+        <!-- Create New Assignment Modal -->
+        <ng-template #assignmentCreate>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Create Assignment</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+              [formGroup]="createAssignment"
+              (ngSubmit)="onAssignmentCreate()"
+            >
+              <div class="form-group">
+                <label for="assignmentNumber">Assignment Number</label>
+                <input 
+                  type="number"
+                  min="100"
+                  max="999"
+                  name="assignmentNumber"
+                  formControlName="assignmentNumber"
+                  class="form-control"
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label for="assignmentName">Assignment Name</label>
+                <input 
+                  type="text"
+                  name="assignmentName"
+                  formControlName="assignmentName"
+                  class="form-control"
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label for="assignmentURL">Assignment Sheet URL</label>
+                <input 
+                  type="url"
+                  name="assignmentURL"
+                  formControlName="assignmentURL"
+                  class="form-control"
+                  required
+                >
+              </div>
+              <div class="form-group">
+                <label for="badge">Badge</label>
+                <select 
+                  name="badge" 
+                  formControlName="badge" 
+                  class="form-control"
+                  required
+                >
+                  <option 
+                    *ngFor="let badge of badges" 
+                    value="{{ badge.value }}"
+                  >{{ badge.view }}</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-success" (click)="modalRef.hide()">Submit</button>
+            </form>
+          </div>
+        </ng-template>
+
+        <!-- List of Existing Assignments -->
+        <div class="card-body">
+          <table class="table table-outline table-hover" sortable-table (sorted)="onSorted($event)">
+            <thead class="thead-light">
+              <tr><th *ngFor="let column of columns" sortable-column="{{ column.name }}">{{ column.title }}</th></tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of assignmentData">
+                <td><a href="{{ data.assignmentURL }}" target="blank">{{ data.assignmentName }}</a></td>
+                <td>
+                  <progressbar 
+                    max="{{ classSize }}" 
+                    value="{{ progress }}"
+                    type="success"
+                  ><b>{{ (progress === 0) ? '' : progress + ' / ' + classSize }}</b></progressbar>
+                </td>
+                <td class="{{ badges[data.badge].className }}"><b>{{ badges[data.badge].view }}</b></td>
+                <td  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    bsDatepicker 
+                    [bsValue]="bsValue"
+                    [bsConfig]="{ containerClass: 'theme-red' }"
+                  > 
+                </td>
+                <td *ngIf="data.visibility === true; else hidden" (click)="toggleVisibility(data)"><i class="fas fa-eye fa-2x"></i></td>
+                <ng-template #hidden>
+                  <td (click)="toggleVisibility(data)"><i class="fas fa-eye-slash fa-2x"></i></td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

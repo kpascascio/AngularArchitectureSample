@@ -1,0 +1,27 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1>Important Dates</h1>
+        </div>
+        <div class="card-body">
+          <table class="table table-outline table-hover" sortable-table (sorted)="onSorted($event)">
+            <thead class="thead-light">
+              <tr>
+                <th *ngFor="let column of columns" sortable-column="{{ column.name }}">{{ column.title }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of resourceData">
+                <td>{{ data.resourceNumber }}</td>
+                <td><a href="{{ data.resourceURL }}" target="blank">{{ data.resourceName }}</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

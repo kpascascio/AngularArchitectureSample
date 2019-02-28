@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <h1>{{step| titlecase}}</h1>
+  </div>
+
+  <div class="card-body">
+    <p>Here are the links to the following assignment. After completed click the checkbox
+    
+    
+    <div *ngFor="let assignment of arrayOfData">
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <h4>
+            <a href="{{assignment.assignmentURL}}" target="blank">{{assignment.assignmentName}}</a>
+          </h4>
+        </div>
+    </div>
+    <br>
+  </div>
+</div>

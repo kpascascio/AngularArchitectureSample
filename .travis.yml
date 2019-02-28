@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "9"
+dist: trusty
+sudo: required
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+ 
+cache:
+  directories:
+     - ./node_modules
+ 
+install:
+  - npm install
+branches:
+  only:
+  - master
+before_script:
+  - npm install -g @angular/cli
+script:
+  - ng lint
+  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - ng build --prod --base-href https://github.com/kpascascio

@@ -1,0 +1,546 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container" style="margin: 3rem auto">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <!--Contact Card-->
+          <div class="card mx-4">
+            <h4 class="card-header">Contact Information</h4>
+            <div class="card-body" style="padding: 1.5rem 1.5rem 0.5rem !important;">
+              <form (ngSubmit)="onSubmit()" [formGroup]="Contact">
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <ng-template #firstNameTemplate>
+                        <div *ngFor="let validation of validation_messages.firstName">
+                          <div *ngIf="Contact.get('FirstName').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input id="FirstName" class="form-control" type="text" placeholder="First Name*" formControlName="FirstName"
+                        autocomplete="given-name" [popover]="firstNameTemplate" triggers="blur:focus" containerClass="{{Contact.get('FirstName').invalid}}">
+                    </div>
+                    <div class="col">
+                      <ng-template #lastNameTemplate>
+                        <div *ngFor="let validation of validation_messages.lastName">
+                          <div *ngIf="Contact.get('LastName').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input id="LastName" class="form-control" type="text" placeholder="Last Name*" formControlName="LastName"
+                        autocomplete="family-name" [popover]="lastNameTemplate" triggers="blur:focus" containerClass="{{Contact.get('LastName').invalid}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <ng-template #phoneTemplate>
+                        <div *ngFor="let validation of validation_messages.phone">
+                          <div *ngIf="Contact.get('Phone').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input class="form-control" type="text" placeholder="Phone*" formControlName="Phone" autocomplete="tel"
+                        [popover]="phoneTemplate" triggers="blur:focus" containerClass="{{Contact.get('Phone').invalid}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3" style="width: 100%">
+                  <div class="row" style="width: 100%">
+                    <div class="col">
+                      <ng-template #streetTemplate>
+                        <div *ngFor="let validation of validation_messages.street">
+                          <div *ngIf="Contact.get('Street').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input class="form-control" type="text" placeholder="Street*" formControlName="Street"
+                        autocomplete="street-address" [popover]="streetTemplate" triggers="blur:focus" containerClass="{{Contact.get('Street').invalid}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <ng-template #cityTemplate>
+                        <div *ngFor="let validation of validation_messages.city">
+                          <div *ngIf="Contact.get('City').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input class="form-control" type="text" placeholder="City*" formControlName="City" autocomplete="address-level2"
+                        [popover]="cityTemplate" triggers="blur:focus" containerClass="{{Contact.get('City').invalid}}">
+                    </div>
+                    <div class="col-md-3">
+                      <ng-template #stateTemplate>
+                        <div *ngFor="let validation of validation_messages.state">
+                          <div *ngIf="Contact.get('State').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input class="form-control" type="text" placeholder="State*" formControlName="State" autocomplete="address-level1"
+                        [popover]="stateTemplate" triggers="blur:focus" containerClass="{{Contact.get('State').invalid}}">
+                    </div>
+                    <div class="col-md-4">
+                      <ng-template #zipTemplate>
+                        <div *ngFor="let validation of validation_messages.zip">
+                          <div *ngIf="Contact.get('Zip').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <input class="form-control" type="text" placeholder="Zip*" formControlName="Zip" autocomplete="postal-code"
+                        [popover]="zipTemplate" triggers="blur:focus" containerClass="{{Contact.get('Zip').invalid}}">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <p style="float:left; margin-bottom: 0;">
+                * = required field
+              </p>
+              <p style="float: right; margin-bottom: 0;">
+                Completion: <span *ngIf="!Contact.valid" style="padding: 0 0 0 0.5rem">
+                  <i class="fa fa-times-circle" style="color: red" aria-hidden="true"></i>
+                </span>
+                <span *ngIf="Contact.valid" style="padding: 0 0 0 0.5rem">
+                  <i class="fa fa-check-circle" style="color: green" aria-hidden="true"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!--Demographics Card-->
+          <div class="card mx-4">
+            <h4 class="card-header">Demographics</h4>
+            <div class="card-body" style="padding: 1.5rem 1.5rem 0.5rem !important;">
+              <form (ngSubmit)="onSubmit()" [formGroup]="Demographics">
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <ng-template #genderTemplate>
+                        <div *ngFor="let validation of validation_messages.gender">
+                          <div *ngIf="Demographics.get('Gender').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <select class="form-control" formControlName="Gender" [popover]="genderTemplate" triggers="blur:focus"
+                        containerClass="{{Demographics.get('Gender').invalid}}">
+                        <option value="null" hidden>Select your Gender*</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <ng-template #ethnicityTemplate>
+                        <div *ngFor="let validation of validation_messages.ethnicity">
+                          <div *ngIf="Demographics.get('Ethnicity').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <select class="form-control" formControlName="Ethnicity" [popover]="ethnicityTemplate" triggers="blur:focus"
+                        containerClass="{{Demographics.get('Ethnicity').invalid}}">
+                        <option value="null" hidden>Select your Ethnicity*</option>
+                        <option value="white">White</option>
+                        <option value="African American/ Black">African American or Black</option>
+                        <option value="Latino/ Hispanic">Latino or Hispanic</option>
+                        <option value="Asian">Asian</option>
+                        <option value="Native American">Native American</option>
+                        <option value="Native Hawaiian/ Pacific Islander">Native Hawaiian or Pacific Islander</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="form-group">
+                    <ng-template #isMarriedTemplate>
+                      <div *ngFor="let validation of validation_messages.isMarried">
+                        <div *ngIf="Demographics.get('IsMarried').hasError(validation.type)">
+                          {{validation.message}}
+                        </div>
+                      </div>
+                    </ng-template>
+                    <label for="isMarried" [popover]="isMarriedTemplate" triggers="blur:focus" containerClass="{{Demographics.get('IsMarried').invalid}}">Are
+                      you married?*</label>
+                    <div id="isMarried">
+                      <div class="form-check form-check-inline">
+                        <input id="marriedYes" class="form-check-input" type="radio" name="IsMarried" value="true"
+                          formControlName="IsMarried" required>
+                        <label class="form-check-label" for="marriedYes">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input id="marriedNo" class="form-check-input" type="radio" name="IsMarried" value="false"
+                          formControlName="IsMarried" required>
+                        <label class="form-check-label" for="marriedNo">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="form-group">
+                    <ng-template #isVeteranTemplate>
+                      <div *ngFor="let validation of validation_messages.isVeteran">
+                        <div *ngIf="Demographics.get('IsVeteran').hasError(validation.type)">
+                          {{validation.message}}
+                        </div>
+                      </div>
+                    </ng-template>
+                    <label for="isVeteran" [popover]="isVeteranTemplate" triggers="blur:focus" containerClass="{{Demographics.get('IsVeteran').invalid}}">Are
+                      you a veteran or currently serving in the military?*</label>
+                    <div id="isVeteran">
+                      <div class="form-check form-check-inline">
+                        <input id="vetYes" class="form-check-input" type="radio" name="IsVeteran" value="true"
+                          formControlName="IsVeteran" required>
+                        <label class="form-check-label" for="vetYes">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input id="vetNo" class="form-check-input" type="radio" name="IsVeteran" value="false"
+                          formControlName="IsVeteran" required>
+                        <label class="form-check-label" for="vetNo">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="form-group" style="margin-bottom: 0.25rem">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <ng-template #hasGIBillTemplate>
+                          <div *ngFor="let validation of validation_messages.hasGIBill">
+                            <div *ngIf="Demographics.get('HasGIBill').hasError(validation.type)">
+                              {{validation.message}}
+                            </div>
+                          </div>
+                        </ng-template>
+                        <label for="hasGI" [popover]="hasGIBillTemplate" triggers="blur:focus" containerClass="{{Demographics.get('HasGIBill').invalid}}">Do
+                          you have the GI Bill?*</label>
+                        <div id="hasGI">
+                          <div class="form-check form-check-inline">
+                            <input id="GIYes" class="form-check-input" type="radio" name="HasGIBill" value="true"
+                              formControlName="HasGIBill" required>
+                            <label class="form-check-label" for="GIYes">Yes</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input id="GINo" class="form-check-input" type="radio" name="HasGIBill" value="false"
+                              formControlName="HasGIBill" required>
+                            <label class="form-check-label" for="GINo">No</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group" style="margin-bottom: 0">
+                          <ng-template #usesGIBillTemplate>
+                            <div *ngFor="let validation of validation_messages.usesGIBill">
+                              <div *ngIf="Demographics.get('UsesGIBill').hasError(validation.type)">
+                                {{validation.message}}
+                              </div>
+                            </div>
+                          </ng-template>
+                          <label for="useGI" [popover]="usesGIBillTemplate" triggers="blur:focus" containerClass="{{Demographics.get('UsesGIBill').invalid}}">Are
+                            you seeking to leverage the
+                            GI Bill for tuition and living expenses?*</label>
+                          <div id="useGI">
+                            <div class="form-check form-check-inline">
+                              <input id="GIUseYes" class="form-check-input" type="radio" name="UsesGIBill" value="true"
+                                formControlName="UsesGIBill" required>
+                              <label class="form-check-label" for="GIUseYes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input id="GIUseNo" class="form-check-input" type="radio" name="UsesGIBill" value="false"
+                                formControlName="UsesGIBill" required>
+                              <label class="form-check-label" for="GIUseNo">No</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="form-group">
+                    <ng-template #isDependantTemplate>
+                      <div *ngFor="let validation of validation_messages.isDependant">
+                        <div *ngIf="Demographics.get('IsDependant').hasError(validation.type)">
+                          {{validation.message}}
+                        </div>
+                      </div>
+                    </ng-template>
+                    <label for="dependant" [popover]="isDependantTemplate" triggers="blur:focus" containerClass="{{Demographics.get('IsDependant').invalid}}">Are
+                      you the spouse or the dependent
+                      of a veteran?*</label>
+                    <div id="dependant">
+                      <div class="form-check form-check-inline">
+                        <input id="dependantYes" class="form-check-input" type="radio" name="IsDependant" value="true"
+                          formControlName="IsDependant" required>
+                        <label class="form-check-label" for="dependantYes">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input id="dependantNo" class="form-check-input" type="radio" name="IsDependant" value="false"
+                          formControlName="IsDependant" required>
+                        <label class="form-check-label" for="dependantNo">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="form-group" style="width: 100%">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <ng-template #hasDisabilitiesTemplate>
+                          <div *ngFor="let validation of validation_messages.hasDisabilities">
+                            <div *ngIf="Demographics.get('HasDisabilities').hasError(validation.type)">
+                              {{validation.message}}
+                            </div>
+                          </div>
+                        </ng-template>
+                        <label for="disabilities" [popover]="hasDisabilitiesTemplate" triggers="blur:focus"
+                          containerClass="{{Demographics.get('HasDisabilities').invalid}}">Do you have any
+                          disabilities?*</label>
+                        <div id="disabilities">
+                          <div class="form-check form-check-inline">
+                            <input id="disabilitiesYes" class="form-check-input" type="radio" name="HasDisabilities"
+                              value="true" formControlName="HasDisabilities" required>
+                            <label class="form-check-label" for="disabilitiesYes">Yes</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input id="disabilitiesNo" class="form-check-input" type="radio" name="HasDisabilities"
+                              value="false" formControlName="HasDisabilities" required>
+                            <label class="form-check-label" for="disabilitiesNo">No</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <textarea class="form-control" placeholder="If so, please provide a brief description of any disabilities you have"
+                          formControlName="DisabilitiesDesc" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <ng-template #isFelonTemplate>
+                          <div *ngFor="let validation of validation_messages.isFelon">
+                            <div *ngIf="Demographics.get('IsFelon').hasError(validation.type)">
+                              {{validation.message}}
+                            </div>
+                          </div>
+                        </ng-template>
+                        <label for="felon" [popover]="isFelonTemplate" triggers="blur:focus" containerClass="{{Demographics.get('IsFelon').invalid}}">Have
+                          you ever been convicted
+                          of a felony?*</label>
+                        <div id="felon">
+                          <div class="form-check form-check-inline">
+                            <input id="felonYes" class="form-check-input" type="radio" name="IsFelon" value="true"
+                              formControlName="IsFelon" required>
+                            <label class="form-check-label" for="felonYes">Yes</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input id="felonNo" class="form-check-input" type="radio" name="IsFelon" value="false"
+                              formControlName="IsFelon" required>
+                            <label class="form-check-label" for="felonNo">No</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <textarea class="form-control" placeholder="If so, please explain" formControlName="DisabilitiesDesc"
+                          rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <p style="float:left; margin-bottom: 0;">
+                * = required field
+              </p>
+              <p style="float: right; margin-bottom: 0;">
+                Completion: <span *ngIf="!Demographics.valid" style="padding: 0 0 0 0.5rem">
+                  <i class="fa fa-times-circle" style="color: red" aria-hidden="true"></i>
+                </span>
+                <span *ngIf="Demographics.valid" style="padding: 0 0 0 0.5rem">
+                  <i class="fa fa-check-circle" style="color: green" aria-hidden="true"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!--Experience Card-->
+          <div class="card mx-4">
+            <h4 class="card-header">Experience</h4>
+            <div class="card-body" style="padding: 1.5rem 1.5rem 0.5rem !important;">
+              <form (ngSubmit)="onSubmit()" [formGroup]="Experience">
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <ng-template #highestEducationTemplate>
+                        <div *ngFor="let validation of validation_messages.highestEducation">
+                          <div *ngIf="Experience.get('HighestEducation').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <select class="form-control" formControlName="HighestEducation" [popover]="highestEducationTemplate"
+                        triggers="blur:focus" containerClass="{{Experience.get('HighestEducation').invalid}}">
+                        <option value="null" hidden>What is your highest level of education*</option>
+                        <option value="1">Not graduated from High School</option>
+                        <option value="2">High School or GED</option>
+                        <option value="3">Vocational/Technical School</option>
+                        <option value="4">Some College</option>
+                        <option value="5">Associate's Degree</option>
+                        <option value="6">Bachelor's Degree</option>
+                        <option value="7">Master's Degree</option>
+                        <option value="8">PhD or Equivalent</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="Experience.get('HighestEducation').valid && Experience.get('HighestEducation').value > 1"
+                  class="input-group mb-3">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <input class="form-control" type="text" placeholder="Name of High School" formControlName="HighSchoolName">
+                    </div>
+                    <div class="col">
+                      <input class="form-control" type="text" placeholder="Graduation Year" formControlName="HighSchoolYear">
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="Experience.get('HighestEducation').valid && Experience.get('HighestEducation').value > 3"
+                  class="input-group mb-3">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <input class="form-control" type="text" placeholder="Name of College" formControlName="CollegeName">
+                    </div>
+                    <div class="col">
+                      <input class="form-control" type="text" placeholder="Graduation Year" formControlName="CollegeYear">
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="Experience.get('HighestEducation').valid && Experience.get('HighestEducation').value > 3"
+                  class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <input class="form-control" type="text" placeholder="Field of study" formControlName="FieldOfStudy">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <ng-template #isEnrolledTemplate>
+                          <div *ngFor="let validation of validation_messages.isEnrolled">
+                            <div *ngIf="Experience.get('IsEnrolled').hasError(validation.type)">
+                              {{validation.message}}
+                            </div>
+                          </div>
+                        </ng-template>
+                        <label for="isEnrolled" [popover]="isEnrolledTemplate" triggers="" containerClass="{{Experience.get('IsEnrolled').invalid}}">Are
+                          you currently enrolled in an
+                          academic institution?*</label>
+                        <div id="isEnrolled">
+                          <div class="form-check form-check-inline">
+                            <input id="enrolledYes" class="form-check-input" type="radio" name="IsEnrolled" value="true"
+                              formControlName="IsEnrolled" required>
+                            <label class="form-check-label" for="enrolledYes">Yes</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input id="enrolledNo" class="form-check-input" type="radio" name="IsEnrolled" value="false"
+                              formControlName="IsEnrolled" required>
+                            <label class="form-check-label" for="enrolledNo">No</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <ng-template #employmentStatusTemplate>
+                        <div *ngFor="let validation of validation_messages.employmentStatus">
+                          <div *ngIf="Experience.get('EmploymentStatus').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <select class="form-control" formControlName="EmploymentStatus" [popover]="employmentStatusTemplate"
+                        triggers="blur:focus" containerClass="{{Experience.get('EmploymentStatus').invalid}}">
+                        <option value="null" hidden>Current Employment Status*</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="Student">Student </option>
+                        <option value="Retired">Retired</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <div class="row">
+                    <div class="col">
+                      <ng-template #incomeLevelTemplate>
+                        <div *ngFor="let validation of validation_messages.incomeLevel">
+                          <div *ngIf="Experience.get('IncomeLevel').hasError(validation.type)">
+                            {{validation.message}}
+                          </div>
+                        </div>
+                      </ng-template>
+                      <select class="form-control" formControlName="IncomeLevel" [popover]="incomeLevelTemplate"
+                        triggers="blur:focus" containerClass="{{Experience.get('IncomeLevel').invalid}}">
+                        <option value="null" hidden>Current Income*</option>
+                        <option value="Prefer not to answer">Prefer not to answer</option>
+                        <option value="$0">$0</option>
+                        <option value="$1 to $24999">$1 to $24,999</option>
+                        <option value="$25000 to $34999">$25,000 to $34,999</option>
+                        <option value="$35000 to $49999">$35,000 to $49,999</option>
+                        <option value="$50000 to $74999">$50,000 to $74,999</option>
+                        <option value="$75000 to $99999">$75,000 to $99,999</option>
+                        <option value="$100000 to $149999">$100,000 to $149,999</option>
+                        <option value="$100000 to $149999">Greater than $150,000</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <p style="float:left; margin-bottom: 0;">
+                * = required field
+              </p>
+              <p style="float: right; margin-bottom: 0;">
+                Completion: <span *ngIf="!Experience.valid" style="padding: 0 0 0 0.5rem">
+                  <i class="fa fa-times-circle" style="color: red" aria-hidden="true"></i>
+                </span>
+                <span *ngIf="Experience.valid" style="padding: 0 0 0 0.5rem">
+                  <i class="fa fa-check-circle" style="color: green" aria-hidden="true"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mx-auto">
+              <button type="submit" class="btn btn-block btn-success" (click)="onSubmit()" [disabled]="(!Contact.valid || !Demographics.valid || !Experience.valid)">Apply</button>
+              <button type="button" class="btn btn-block btn-warn" (click)="test()" style="background: red">TEST</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,76 @@
+<div class="animated fadeIn">
+  <!--Race-->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                  Demographics by Race and Ethnicity
+                  <div class="card-header-actions">
+                    <a href="http://www.chartjs.org">
+                      <small class="text-muted">docs</small>
+                    </a>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="chart-wrapper">
+                    <canvas baseChart class="chart"
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+                </div>
+              </div>
+        </div>
+</div>
+
+  
+
+
+<div class="animated fadeIn">
+    <div class="card-columns cols-2">
+        <div class="card">
+            <div class="card-header">
+              Gender Demographics
+              <div class="card-header-actions">
+                <a href="http://www.chartjs.org">
+                  <small class="text-muted">docs</small>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart-wrapper">
+                <canvas baseChart class="chart"
+                [data]="genderChartData"
+                [labels]="genderChartLabels"
+                [chartType]="genderChartType"
+                [colors]="genderChartBGColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+              <div class="card-header">
+                Educational Demographics
+                <div class="card-header-actions">
+                  <a href="http://www.chartjs.org">
+                    <small class="text-muted">docs</small>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart-wrapper">
+                  <canvas baseChart class="chart"
+                  [data]="educationalChartData"
+                  [labels]="educationalChartLabels"
+                  [chartType]="educationalChartType"
+                  [colors]="educationalChartBGColors"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+                </div>
+              </div>
+            </div>
+    </div>
+  </div>

@@ -1,0 +1,86 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col">
+      <div class="card" style="padding: 2rem">
+        <div *ngIf="profile != null; else createProfile">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="profilePictureBox">
+                <img *ngIf="userProfile.profilePictureUri; else userImage" src="{{userProfile.profilePictureUri}}">
+                <ng-template #userImage>
+                  <img src="../../../../assets/img/avatars/UserIcon.svg">
+                </ng-template>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <ul class="mb-4" style="list-style: none">
+                <li>
+                  <h2>
+                    {{profile.firstName}} {{profile.lastName}}
+                  </h2>
+                </li>
+                <li *ngIf="status">
+                  {{status}}
+                </li>
+              </ul>
+              <div class="mb-4 px-4" id="progressBar">
+                <progressbar max="100" value="45" type="success"></progressbar>
+              </div>
+              <div class="mb-4 px-4" id="progressBar">
+                <progressbar max="100" value="67" type="success"></progressbar>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5" style="padding-top: 36px">
+              <div style="border-top: 1px solid lightgrey">
+                <div class="p-4">
+                  <h4>Checklist</h4>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                    aria-selected="true">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                    aria-selected="false">DISC</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="row">
+                    <div class="col">Phone:</div>
+                    <div class="col">{{profile.contact.phone}}</div>
+                  </div>
+                  <div class="row pt-4">
+                    <div class="col">Address:</div>
+                    <div class="col">
+                      <div>
+                        {{profile.contact.streetAddress}}
+                      </div>
+                      <div>
+                        {{profile.contact.city}} {{profile.contact.state}} {{profile.contact.zip}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row pt-4">
+                    <div class="col">Email:</div>
+                    <div class="col">{{profile.contact.email}}</div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #createProfile></ng-template>

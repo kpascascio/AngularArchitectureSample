@@ -1,0 +1,426 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <button 
+            class="btn btn-primary" 
+            type="button" 
+            (click)="openModal(quizCreate)"
+          >Create New Quiz!</button>
+        </div>
+
+        <!-- Create New Quiz Modal -->
+        <ng-template #quizCreate>
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Create Quiz</h4>
+          </div>
+          <div class="modal-body">
+            <form
+              [formGroup]="createQuiz"
+              (ngSubmit)="onQuizCreate()"
+            >
+              <div class="row">
+                <div class="form-group col-3">
+                  <label for="quizNumber">Quiz Number</label>
+                  <input 
+                    type="number"
+                    min="100"
+                    max="999"
+                    name="quizNumber"
+                    id="quizNumber"
+                    formControlName="quizNumber"
+                    class="form-control"
+                    required
+                  >
+                </div>
+                <div class="form-group col-9">
+                  <label for="quizName">Quiz Name</label>
+                  <input 
+                    type="text"
+                    name="quizName"
+                    id="quizName"
+                    formControlName="quizName"
+                    class="form-control"
+                    required
+                  >
+                </div>
+              </div>
+              <!-- Checkboxes to reattempt/randomize questions -->
+              <div class="accordion" id="accordion">
+                <div class="card">
+                  <div class="card-header" id="questionOne">
+                    <!-- <label for="questionNumber">Question Number</label>
+                      <input 
+                        type="number"
+                        name="questionNumber"
+                        id="questionNumber"
+                        formControlName="questionNumber"
+                        class="form-control"
+                        required
+                      >
+                    </div> -->
+                    <div class="row">
+                      <div class="form-group col-9">
+                        <label for="question">Question 1</label>
+                        <input 
+                          type="text"
+                          name="question"
+                          id="question"
+                          formControlName="question"
+                          class="form-control"
+                          required
+                        >
+                      </div>
+                      <button 
+                        class="btn btn-link col-3" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#answerOne" 
+                        aria-expanded="true"
+                        aria-controls="answerOne"
+                      >Answers</button>
+                    </div>
+                  </div>
+
+                  <div 
+                    id="answerOne" 
+                    class="collapse show" 
+                    aria-labelledby="questionOne" 
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="answerType">Select Answer Type</label>
+                        <select 
+                          name="answerType" 
+                          id="answerType" 
+                          formControlName="answerType" 
+                          class="form-control"
+                        >
+                          <!-- <option 
+                            *ngFor="let badge of badges" 
+                            value="{{ badge.value }}"
+                          >{{ badge.view }}</option> -->
+                          <option>Multi-Select</option>
+                          <option>Single Answer</option>
+                          <option>True/False</option>
+                          <option>Short Answer</option>
+                        </select>
+                      </div>
+                      <div class="row">
+                        <div class="col-3">
+                          <p>Correct</p>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input position-static" value="option1" id="option1" name="singleAnswer">
+                          </div><br><br>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input position-static" value="option2" id="option1" name="singleAnswer">
+                          </div><br><br>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input position-static" value="option3" id="option1" name="singleAnswer">
+                          </div><br><br>
+                          <div class="form-check">
+                            <input type="radio" class="form-check-input position-static" value="option4" id="option1" name="singleAnswer">
+                          </div>
+                        </div>
+                        <div class="form-group col-9">
+                          <label for="answer1">Answer 1</label>
+                          <input 
+                            name="answer1" 
+                            id="answer1" 
+                            type="text" 
+                            formControlName="answer1" 
+                            class="form-control"
+                            required
+                          >
+                          <label for="answer2">Answer 2</label>
+                          <input 
+                            name="answer2" 
+                            id="answer2" 
+                            type="text" 
+                            formControlName="answer2" 
+                            class="form-control"
+                            required
+                          >
+                          <label for="answer3">Answer 3</label>
+                          <input 
+                            name="answer3" 
+                            id="answer3" 
+                            type="text" 
+                            formControlName="answer3" 
+                            class="form-control"
+                            required
+                          >
+                          <label for="answer4">Answer 4</label>
+                          <input 
+                            name="answer4" 
+                            id="answer4" 
+                            type="text" 
+                            formControlName="answer4" 
+                            class="form-control"
+                            required
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card">
+                  <div class="card-header" id="questionTwo">
+                    <div class="row">
+                      <div class="form-group col-9">
+                        <label for="question">Question 2</label>
+                        <input 
+                          type="text"
+                          name="question"
+                          id="question"
+                          formControlName="question"
+                          class="form-control"
+                          required
+                        >
+                      </div>
+                      <button 
+                        class="btn btn-link col-3" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#answerTwo" 
+                        aria-expanded="true"
+                      >Answers</button>
+                    </div>
+                  </div>
+
+                  <div 
+                    id="answerTwo" 
+                    class="collapse show" 
+                    aria-labelledby="questionTwo" 
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="answerType">Select Answer Type</label>
+                        <select 
+                          name="answerType" 
+                          id="answerType" 
+                          formControlName="answerType" 
+                          class="form-control"
+                        >
+                          <option>Multi-Select</option>
+                          <option>Single Answer</option>
+                          <option>True/False</option>
+                          <option>Short Answer</option>
+                        </select>
+                      </div>
+                      <div class="row">
+                        <div class="col-3">
+                          <p>Correct</p>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input position-static" value="option1" id="option1" name="multiAnswer">
+                          </div><br><br>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input position-static" value="option2" id="option1" name="multiAnswer">
+                          </div><br><br>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input position-static" value="option3" id="option1" name="multiAnswer">
+                          </div><br><br>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input position-static" value="option4" id="option1" name="multiAnswer">
+                          </div>
+                        </div>
+                        <div class="form-group col-9">
+                            <label for="answer1">Answer 1</label>
+                            <input 
+                              name="answer1" 
+                              id="answer1" 
+                              type="text" 
+                              formControlName="answer1" 
+                              class="form-control"
+                              required
+                            >
+                            <label for="answer2">Answer 2</label>
+                            <input 
+                              name="answer2" 
+                              id="answer2" 
+                              type="text" 
+                              formControlName="answer2" 
+                              class="form-control"
+                              required
+                            >
+                            <label for="answer3">Answer 3</label>
+                            <input 
+                              name="answer3" 
+                              id="answer3" 
+                              type="text" 
+                              formControlName="answer3" 
+                              class="form-control"
+                              required
+                            >
+                            <label for="answer4">Answer 4</label>
+                            <input 
+                              name="answer4" 
+                              id="answer4" 
+                              type="text" 
+                              formControlName="answer4" 
+                              class="form-control"
+                              required
+                            >
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="questionThree">
+                    <div class="row">
+                      <div class="form-group col-9">
+                        <label for="question">Question 3</label>
+                        <input 
+                          type="text"
+                          name="question"
+                          id="question"
+                          formControlName="question"
+                          class="form-control"
+                          required
+                        >
+                      </div>
+                      <button 
+                        class="btn btn-link col-3" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#answerThree" 
+                        aria-expanded="true"
+                      >Answers</button>
+                    </div>
+                  </div>
+
+                  <div 
+                    id="answerThree" 
+                    class="collapse show" 
+                    aria-labelledby="questionThree" 
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="answerType">Select Answer Type</label>
+                        <select 
+                          name="answerType" 
+                          id="answerType" 
+                          formControlName="answerType" 
+                          class="form-control"
+                        >
+                          <option>Multi-Select</option>
+                          <option>Single Answer</option>
+                          <option>True/False</option>
+                          <option>Short Answer</option>
+                        </select>
+                      </div>
+                      <p>Correct</p>
+                      <div class="form-check">
+                        <input type="radio" class="form-check-input d-flex justify-content-left" value="option1" id="trueFalse1" name="trueFalse">
+                        <label class="form-check-label d-flex justify-content-center" for="trueFalse1">True</label>
+                      </div><br>
+                      <div class="form-check">
+                        <input type="radio" class="form-check-input d-flex justify-content-left" value="option2" id="trueFalse2" name="trueFalse">
+                        <label class="form-check-label d-flex justify-content-center" for="trueFalse2">False</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="questionFour">
+                    <div class="row">
+                      <div class="form-group col-9">
+                        <label for="question">Question 4</label>
+                        <input 
+                          type="text"
+                          name="question"
+                          id="question"
+                          formControlName="question"
+                          class="form-control"
+                          required
+                        >
+                      </div>
+                      <button 
+                        class="btn btn-link col-3" 
+                        type="button" 
+                        data-toggle="collapse" 
+                        data-target="#answerFour" 
+                        aria-expanded="true"
+                      >Answers</button>
+                    </div>
+                  </div>
+
+                  <div 
+                    id="answerFour" 
+                    class="collapse show" 
+                    aria-labelledby="questionFour" 
+                    data-parent="#accordion"
+                  >
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="answerType">Select Answer Type</label>
+                        <select 
+                          name="answerType" 
+                          id="answerType" 
+                          formControlName="answerType" 
+                          class="form-control"
+                        >
+                          <option>Multi-Select</option>
+                          <option>Single Answer</option>
+                          <option>True/False</option>
+                          <option>Short Answer</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+
+              <button type="submit" class="btn btn-success" (click)="modalRef.hide()">Submit</button>
+              <button type="button" class="pull-right btn btn-danger" (click)="modalRef.hide()">Cancel</button>
+            </form>
+          </div>
+        </ng-template>
+
+        <!-- List of Existing Quizzes -->
+        <!-- <div class="card-body">
+          <table class="table table-outline table-hover" sortable-table (sorted)="onSorted($event)">
+            <thead class="thead-light">
+              <tr><th *ngFor="let column of columns" sortable-column="{{ column.name }}">{{ column.title }}</th></tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of assignmentData">
+                <td><a href="{{ data.assignmentURL }}" target="blank">{{ data.assignmentName }}</a></td>
+                <td>
+                  <progressbar 
+                    max="{{ classSize }}" 
+                    value="{{ progress }}"
+                    type="success"
+                  ><b>{{ (progress === 0) ? '' : progress + ' / ' + classSize }}</b></progressbar>
+                </td>
+                <td class="{{ badges[data.badge].className }}"><b>{{ badges[data.badge].view }}</b></td>
+                <td  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    bsDatepicker 
+                    [bsValue]="bsValue"
+                    [bsConfig]="{ containerClass: 'theme-red' }"
+                  > 
+                </td>
+                <td *ngIf="data.visibility === true; else hidden" (click)="toggleVisibility(data)"><i class="fas fa-eye fa-2x"></i></td>
+                <ng-template #hidden>
+                  <td (click)="toggleVisibility(data)"><i class="fas fa-eye-slash fa-2x"></i></td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

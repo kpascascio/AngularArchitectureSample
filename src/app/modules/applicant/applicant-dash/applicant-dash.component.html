@@ -1,0 +1,29 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h1>Welcome {{username}}!</h1>
+      <label for="progressBar">You are 45% done with your application process</label>
+      <div class="mb-4" id="progressBar">
+        <progressbar max="100" value="45" type="success"></progressbar>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <h5 class="card-header">Next Steps</h5>
+            <div class="card-body">
+              <ul class="card-text">
+                <li>Profile Information</li>
+                <li>Track Choice</li>
+                <li>Pre Work</li>
+                <li>Meet with admissions</li>
+                <li>Orientation</li>
+              </ul>
+              <a [href]="calendlyUrl" id="admissionsCalendlyLink" class="btn btn-primary" target="blank">Schedule A
+                Meeting With Admissions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

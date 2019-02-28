@@ -1,0 +1,42 @@
+<div class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <!-- Add filter function here -->
+            <form class="form-inline my-2 my-lg-0">
+              <input 
+                class="form-control mr-sm-2" 
+                type="search" 
+                placeholder="Search Student" 
+                aria-label="Search"
+                name="searchString"
+                [(ngModel)]="searchString"
+              >
+              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+  
+          <!-- List of Students -->
+          <div class="card-body">
+            <table class="table table-outline table-hover" sortable-table (sorted)="onSorted($event)">
+              <thead class="thead-light">
+                <tr><th *ngFor="let column of columns" sortable-column="{{ column.name }}">{{ column.title }}</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of studentData | filter : ['studentName', 'status'] : searchString : [status]; let i = index">
+                  <td>{{ data.studentName }}</td>
+                  <td class="{{ badges[data.badge].className }}"><b>{{ badges[data.badge].view }}</b></td>
+                  <td>{{ cohorts[data.cohort].view }} {{ (data.cohort !== 0) ? '(' + data.cohort + ')' : '' }}</td>
+                  <td><a href="mailto:{{ data.email }}">{{ data.email }}</a></td>
+                  <td><a href="{{ data.github }}" target="blank">{{ data.github }}</a></td>
+                  <td class="{{ status[data.status] }}">{{ status[data.status] }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

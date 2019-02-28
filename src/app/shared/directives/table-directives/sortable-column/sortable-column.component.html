@@ -1,0 +1,9 @@
+<div style="cursor:pointer">
+  <ng-content></ng-content>
+  <span style="margin-left: 5px" *ngIf="sortDirection === 'asc'">
+    <i class="fas fa-chevron-up"></i>
+  </span>
+  <span style="margin-left: 5px" *ngIf="sortDirection === 'desc'">
+    <i class="fas fa-chevron-down"></i>  
+  </span>
+</div>

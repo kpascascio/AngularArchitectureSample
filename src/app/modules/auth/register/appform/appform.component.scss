@@ -1,0 +1,40 @@
+.app-body {
+    background-image: url("../../../../../assets/img/brand/eleven-fifty-background-faded-rotated.png");
+    background-attachment: fixed;
+}
+
+.alert {
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0;
+}
+
+.noButton {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border-radius: 50%;
+    background: none;
+    border: none;
+}
+
+::ng-deep .false {
+    display: none !important;
+}
+
+::ng-deep .true {
+    color: #813838;
+    background-color: #fee2e1;
+    border-color: #fdd6d6;
+}
+
+::ng-deep .true .arrow:after {
+    border-top-color: #fee2e1;
+}
+
+.ng-dirty.ng-invalid, .ng-touched.ng-invalid {
+    border-color: red;
+}
+
+.ng-dirty.ng-valid, .ng-touched.ng-valid {
+    border-color: green; 
+}
